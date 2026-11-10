@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SILMAD</title>
+<meta name="description" content="SILMAD, fábrica de muebles a medida desde 1978. Fabricamos e instalamos el amoblamiento que proyectan estudios de arquitectura e interiorismo. Loma Hermosa, Buenos Aires.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: sitio con pestañas (Inicio, Obras, Fábrica, Cómo trabajamos) en una sola página; el contacto es una banda fija al pie de todas las pestañas. Tema único claro, como el brochure. */
+:root{
+  --paper:#F4F0E8;
+  --paper-2:#EAE3D6;
+  --ink:#1E1C19;
+  --ink-soft:#5A554D;
+  --mute:#B9B2A6;
+  --line:#CFC7B9;
+  --line-dark:#3E3A34;
+  --clay:#B5653A;
+  --clay-soft:#D49A72;
+  --on-ink:#EFEAE0;
+  --white:#FFFFFF;
+  --f-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-body:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --max:1160px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--paper)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(56px,8vw,104px)}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);font-weight:500;margin:0 0 16px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(40px,6.2vw,78px)}
+h2{font-size:clamp(30px,4.2vw,50px)}
+h3{font-size:21px;line-height:1.2}
+em{font-style:italic;color:var(--clay);font-weight:700}
+p{margin:0}
+.lead{font-size:18px;color:var(--ink-soft);max-width:34em}
+.cap{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;font:600 15px/1 var(--f-body);text-decoration:none;border:1px solid var(--ink);transition:background .2s,color .2s,border-color .2s;cursor:pointer;background:none;color:var(--ink)}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--clay);border-color:var(--clay)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* Encabezado + pestañas */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:34px;height:auto}
+.brand span{font-family:var(--f-display);font-weight:500;font-size:19px;letter-spacing:.32em}
+.tabs{display:flex;gap:4px;height:100%}
+.tabs a{display:flex;align-items:center;padding:0 14px;font-size:14px;font-weight:500;text-decoration:none;color:var(--ink-soft);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--clay)}
+.top .btn{padding:10px 16px;font-size:14px}
+.tabs-m{display:none}
+@media (max-width:900px){
+  .top-row .tabs{display:none}
+  .tabs-m{display:flex;overflow-x:auto;scrollbar-width:none;border-top:1px solid var(--line);height:46px}
+  .tabs-m::-webkit-scrollbar{display:none}
+  .tabs-m a{flex:1 0 auto;justify-content:center;padding:0 12px}
+}
+
+
+/* Vistas */
+.view[hidden]{display:none!important}
+
+/* Inicio */
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center;padding-block:clamp(36px,6vw,80px)}
+.hero-copy{display:flex;flex-direction:column;gap:24px;min-width:0}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-img{aspect-ratio:4/5;overflow:hidden;max-width:100%}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.hero-img-wrap{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero-img{aspect-ratio:1/1}}
+
+.facts{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{padding:24px 20px 22px 0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.fact+.fact{padding-left:20px;border-left:1px solid var(--line)}
+.fact b{font-family:var(--f-display);font-size:32px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.fact span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+@media (max-width:720px){.facts .wrap{grid-template-columns:1fr 1fr}.fact:nth-child(3){padding-left:0;border-left:0}.fact:nth-child(n+3){border-top:1px solid var(--line)}}
+
+.pact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:start}
+.pact-left{display:flex;flex-direction:column;gap:26px;min-width:0}
+.pact ul{list-style:none;margin:0;padding:0}
+.pact li{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--line)}
+.pact li:last-child{border-bottom:1px solid var(--line)}
+.pact li strong{font-weight:600}
+.pact li span{color:var(--ink-soft)}
+.pact-box{background:var(--paper-2);padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;gap:16px}
+.pact-box h3{font-size:26px}
+.pact-box p{color:var(--ink-soft)}
+@media (max-width:820px){.pact .wrap{grid-template-columns:1fr}.pact li{grid-template-columns:1fr;gap:2px}}
+
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head p{max-width:30em;color:var(--ink-soft)}
+
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.feat .ph{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2)}
+.feat .ph img{width:100%;height:100%;object-fit:cover}
+.more{margin-top:32px;display:flex;justify-content:center}
+@media (max-width:720px){.feat{grid-template-columns:1fr 1fr}}
+
+/* Obras: galería tipo mosaico */
+.gallery{columns:3 280px;column-gap:14px}
+.gallery figure{margin:0 0 18px;break-inside:avoid;display:flex;flex-direction:column;gap:8px}
+.gallery img{width:100%;background:var(--paper-2)}
+@media (max-width:520px){.gallery{columns:2;column-gap:10px}.gallery figure{margin-bottom:14px}}
+
+/* Fábrica */
+.plant{background:var(--ink);color:var(--on-ink)}
+.plant em,.plant .eyebrow{color:var(--clay-soft)}
+.plant .lead{color:var(--mute)}
+.plant-top{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:48px}
+.plant-points{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:52px}
+.plant-points div{border-top:1px solid var(--line-dark);padding-top:18px;display:flex;flex-direction:column;gap:8px}
+.plant-points h3{font-size:19px}
+.plant-points p{color:var(--mute);font-size:15px}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.mach{display:flex;flex-direction:column;gap:8px;min-width:0}
+.mach .ph{background:var(--white);aspect-ratio:4/3;overflow:hidden}
+.mach .ph img{width:100%;height:100%;object-fit:contain}
+.mach b{font-family:var(--f-display);font-size:19px;font-weight:700;margin-top:4px}
+.mach span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--clay-soft)}
+.mach p{font-size:14px;color:var(--mute)}
+@media (max-width:900px){.plant-top{grid-template-columns:1fr}.plant-points{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}}
+
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.trio article{display:flex;flex-direction:column;gap:10px;min-width:0}
+.trio .ph{aspect-ratio:4/5;overflow:hidden}
+.trio .ph img{width:100%;height:100%;object-fit:cover}
+.trio h3{margin-top:8px}
+.trio p{color:var(--ink-soft);font-size:15px}
+.brands{margin-top:52px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 40px;padding-top:24px;border-top:1px solid var(--line)}
+.brands small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-right:8px}
+.brands span{font-family:var(--f-display);font-size:20px;font-weight:500}
+@media (max-width:820px){.trio{grid-template-columns:1fr}}
+
+/* Proceso */
+.steps{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,88px);align-items:start}
+.steps ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:48px 1fr;gap:4px 16px;padding:20px 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-size:28px;line-height:1;color:var(--clay);grid-row:span 2}
+.steps li strong{font-weight:600;font-size:17px}
+.steps li span{color:var(--ink-soft)}
+.steps-side{display:flex;flex-direction:column;gap:22px;min-width:0}
+.steps-side figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.steps-side .ph{aspect-ratio:4/3;overflow:hidden}
+.steps-side .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+
+/* Contacto fijo al pie de todas las pestañas */
+.contact{background:var(--ink);color:var(--on-ink)}
+#contacto{scroll-margin-top:calc(118px + env(safe-area-inset-top,0px))}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,88px);padding-block:clamp(52px,7vw,88px)}
+.contact em,.contact .eyebrow{color:var(--clay-soft)}
+.contact .lead{color:var(--mute)}
+.contact-left{display:flex;flex-direction:column;gap:20px;min-width:0}
+.contact .btn{border-color:var(--on-ink);background:var(--on-ink);color:var(--ink)}
+.contact .btn:hover{background:var(--clay);border-color:var(--clay);color:var(--on-ink)}
+.row{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line-dark);align-items:baseline}
+.row:last-child{border-bottom:1px solid var(--line-dark)}
+.row small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.row div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.row a{font-size:19px;text-decoration:none;font-weight:500;overflow-wrap:anywhere}
+.row a:hover{color:var(--clay-soft)}
+.row p{font-size:17px}
+.row .row-note{font-size:14px;color:var(--mute)}
+.legal{border-top:1px solid var(--line-dark)}
+.legal .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:22px;font-size:13px;color:var(--mute)}
+.legal b{color:var(--on-ink);font-family:var(--f-display);font-weight:500;letter-spacing:.3em}
+@media (max-width:820px){.contact .wrap{grid-template-columns:1fr}.row{grid-template-columns:1fr;gap:6px}}
+
+/* Marco de contacto fijo abajo */
+body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:35;background:var(--ink);color:var(--on-ink);border-top:1px solid var(--line-dark);padding-bottom:env(safe-area-inset-bottom,0px)}
+.dock .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.dock-txt{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.dock-txt b{font-family:var(--f-display);font-size:18px;font-weight:700}
+.dock-txt span{font-size:13px;color:var(--mute)}
+.dock-act{display:flex;align-items:center;gap:10px}
+.dock a{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 18px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--line-dark);color:var(--on-ink);white-space:nowrap}
+.dock a:hover{border-color:var(--on-ink)}
+.dock a.wa{background:var(--clay);border-color:var(--clay);color:var(--white)}
+.dock a.wa:hover{background:var(--clay-soft);border-color:var(--clay-soft)}
+.dock svg{width:20px;height:20px}
+@media (max-width:900px){.dock .dock-more{display:none}}
+@media (max-width:1040px) and (min-width:721px){.dock .mail-long{display:none}.dock .mail-short{display:inline}}
+@media (max-width:720px){.dock-txt{display:none}.dock-act{flex:1}.dock a{flex:1;padding:0 10px}}
+.dock .mail-short{display:none}
+
+/* Logos de marcas */
+.logos{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
+.logos div{background:var(--paper);display:grid;place-items:center;padding:28px 20px;min-width:0}
+.logos img{height:30px;width:auto;max-width:100%;object-fit:contain;opacity:.85}
+.brands-title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:56px}
+.brands-title p{color:var(--ink-soft);font-size:15px;max-width:36em}
+@media (max-width:720px){.logos{grid-template-columns:repeat(2,1fr)}.logos div:last-child{grid-column:span 2}.logos img{height:26px}}
+
+/* Laqueado */
+.lacquer{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center;margin-bottom:56px}
+.lacquer .ph{aspect-ratio:5/4;overflow:hidden}
+.lacquer .ph img{width:100%;height:100%;object-fit:cover}
+.lacquer div.txt{display:flex;flex-direction:column;gap:14px;min-width:0}
+.lacquer p{color:var(--ink-soft)}
+@media (max-width:820px){.lacquer{grid-template-columns:1fr}}
+
+/* Ajustes móvil */
+@media (max-width:720px){
+  .top-row{height:56px}
+  .top-row .btn{display:none}
+  .tabs-m{height:44px}
+  .eyebrow{letter-spacing:.12em}
+  .hero .wrap{gap:28px}
+  .lead{font-size:17px}
+  .actions .btn{flex:1 1 auto;justify-content:center;white-space:nowrap;padding:14px 16px}
+  .fact b{font-size:28px}
+  .fact span{letter-spacing:.08em}
+  .trio .ph{aspect-ratio:4/3}
+  .lacquer{margin-bottom:40px}
+  .flow{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-right:calc(-1 * max(20px,env(safe-area-inset-right,0px)));padding-right:max(20px,env(safe-area-inset-right,0px));scrollbar-width:none}
+  .flow::-webkit-scrollbar{display:none}
+  .mach{flex:0 0 72%;scroll-snap-align:start}
+  .swipe-hint{display:block}
+  .dock .wrap{height:60px}
+  .dock .mail-long{display:none}
+  .dock .dock-mail{display:none}
+  .dock .mail-short{display:inline}
+  .head{margin-bottom:28px}
+  .band{padding-block:52px}
+}
+.swipe-hint{display:none;font-size:12px;color:var(--mute);margin-top:12px}
+</style>
+<link rel="icon" href="img/logo-mark.webp">
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.2Z"/></symbol></svg>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#inicio" aria-label="SILMAD, inicio">
+      <img src="img/logo-mark.webp" alt="" width="34" height="35">
+      <span>SILMAD</span>
+    </a>
+    <nav class="tabs" aria-label="Secciones">
+      <a href="#inicio">Inicio</a>
+      <a href="#obras">Obras</a>
+      <a href="#fabrica">Fábrica</a>
+      <a href="#proceso">Cómo trabajamos</a>
+    </nav>
+    <a class="btn btn-solid" href="#contacto">Contacto</a>
+  </div>
+  <nav class="tabs tabs-m" aria-label="Secciones">
+    <a href="#inicio">Inicio</a>
+    <a href="#obras">Obras</a>
+    <a href="#fabrica">Fábrica</a>
+    <a href="#proceso">Cómo trabajamos</a>
+  </nav>
+</header>
+
+<main>
+  <!-- INICIO -->
+  <div class="view" data-view="inicio">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Fábrica de muebles a medida · Desde 1978</p>
+          <h1>Amoblamiento <em>integral</em> a medida.</h1>
+          <p class="lead">Fabricamos e instalamos lo que proyectan estudios de arquitectura e interiorismo. Del plano a la obra terminada, con un solo responsable y todo el proceso dentro de nuestra planta.</p>
+          <div class="actions">
+            <a class="btn btn-solid" href="https://wa.me/5491164580474" target="_blank" rel="noopener">Enviános tu proyecto</a>
+            <a class="btn btn-ghost" href="#obras">Ver obras</a>
+          </div>
+        </div>
+        <figure class="hero-img-wrap"><div class="hero-img"><img src="img/mm-cocina.webp" alt="Cocina con alacenas enchapadas en nogal y bajo mesadas laqueados" width="1086" height="1448"></div><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="facts" aria-label="SILMAD en números">
+      <div class="wrap">
+        <div class="fact"><b>1978</b><span>Oficio desde</span></div>
+        <div class="fact"><b>2</b><span>Sedes productivas</span></div>
+        <div class="fact"><b>5</b><span>Máquinas Biesse</span></div>
+        <div class="fact"><b>B2B</b><span>Solo estudios y profesionales</span></div>
+      </div>
+    </section>
+
+    <section class="band pact">
+      <div class="wrap">
+        <div class="pact-left">
+          <p class="eyebrow">Con quién trabajamos</p>
+          <h2>Socios de los que <em>proyectan</em>.</h2>
+          <ul>
+            <li><strong>Arquitectos</strong><span>Estudios que especifican y derivan proyectos de amoblamiento integral: viviendas, locales y oficinas.</span></li>
+            <li><strong>Interioristas</strong><span>Diseñadores que necesitan mobiliario a medida con terminación premium en cada ambiente.</span></li>
+          </ul>
+        </div>
+        <div class="pact-box">
+          <h3>No competimos con vos.</h3>
+          <p>SILMAD no ofrece diseño de interiores ni vende a cliente final. Fabricamos lo que vos proyectás. El proyecto y la relación con tu cliente son tuyos.</p>
+          <p>Lo que sí hacemos es la parte técnica: un encuentro mal resuelto, una luz que no cierra o un herraje que no entra se detectan en la documentación, antes del corte, y no el día de la instalación.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" style="padding-top:0">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="eyebrow">Obras destacadas</p><h2>Carpintería que <em>ordena el espacio</em>.</h2></div>
+          <p>Proyectos fabricados e instalados por SILMAD sobre el diseño de cada estudio.</p>
+        </div>
+        <div class="feat">
+          <figure><div class="ph"><img src="img/cocina-isla.webp" alt="Cocina con isla de mármol" loading="lazy" width="700" height="532"></div><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><div class="ph"><img src="img/mm-bano-doble.webp" alt="Vanitory doble en nogal y columna laqueada" loading="lazy" width="1086" height="1448"></div><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+          <figure><div class="ph"><img src="img/recibidor-varillado.webp" alt="Muebles bajos y panel de varillas de madera" loading="lazy" width="796" height="610"></div><figcaption class="cap">Arq. Lala Loviseck</figcaption></figure>
+          <figure><div class="ph"><img src="img/living-biblioteca.webp" alt="Biblioteca y mueble de TV" loading="lazy" width="775" height="698"></div><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><div class="ph"><img src="img/dormitorio.webp" alt="Dormitorio con revestimiento de madera" loading="lazy" width="836" height="799"></div><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><div class="ph"><img src="img/mm-aparador.webp" alt="Aparador laqueado con vitrinas de nogal" loading="lazy" width="1086" height="1448"></div><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+        </div>
+        <div class="more"><a class="btn btn-ghost" href="#obras">Ver todas las obras</a></div>
+        <div class="brands-title"><p class="eyebrow" style="margin:0">Marcas con las que trabajamos</p><p>Herrajes, placas y perfiles de primera línea en cada proyecto.</p></div>
+        <div class="logos" aria-label="Marcas con las que trabajamos">
+          <div><img src="img/logo-blum.png" alt="Blum" width="429" height="120" loading="lazy"></div>
+          <div><img src="img/logo-hafele.png" alt="Häfele" width="762" height="120" loading="lazy"></div>
+          <div><img src="img/logo-carpi.png" alt="Carpi" width="632" height="120" loading="lazy"></div>
+          <div><img src="img/logo-egger.png" alt="Egger" width="512" height="120" loading="lazy"></div>
+          <div><img src="img/logo-faplac.png" alt="Faplac" width="543" height="120" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- OBRAS -->
+  <div class="view" data-view="obras" hidden>
+    <section class="band">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="eyebrow">Obras</p><h2>Proyectos <em>fabricados e instalados</em>.</h2></div>
+          <p>Viviendas, locales y oficinas que fabricamos sobre el diseño de cada estudio.</p>
+        </div>
+        <div class="gallery">
+          <figure><img src="img/mm-cocina.webp" alt="Cocina con alacenas de nogal y campana revestida" loading="lazy" width="1086" height="1448"><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+          <figure><img src="img/mm-bano-doble.webp" alt="Vanitory doble en nogal y columna laqueada" loading="lazy" width="1086" height="1448"><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+          <figure><img src="img/mm-estudio.webp" alt="Estudio con biblioteca iluminada y escritorio de nogal" loading="lazy" width="1200" height="900"><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+          <figure><img src="img/mm-aparador.webp" alt="Aparador laqueado con vitrinas de nogal" loading="lazy" width="1086" height="1448"><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+          <figure><img src="img/mm-bano.webp" alt="Vanitory y columna laqueados con molduras" loading="lazy" width="1086" height="1448"><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+          <figure><img src="img/mm-tv.webp" alt="Revestimiento de madera con marco para TV y puerta oculta" loading="lazy" width="1086" height="1448"><figcaption class="cap">Arq. Alin Blanco Acevedo · Mamma Mia</figcaption></figure>
+          <figure><img src="img/cocina-isla.webp" alt="Cocina con isla de mármol" loading="lazy" width="700" height="532"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/vestidor-varillado.webp" alt="Recibidor revestido en varillado blanco" loading="lazy" width="632" height="819"><figcaption class="cap">Arq. Lala Loviseck</figcaption></figure>
+          <figure><img src="img/living-biblioteca.webp" alt="Biblioteca y mueble de TV" loading="lazy" width="775" height="698"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/n05.webp" alt="Cocina blanca con isla" loading="lazy" width="778" height="630"><figcaption class="cap">Arq. Lala Loviseck</figcaption></figure>
+          <figure><img src="img/dormitorio.webp" alt="Dormitorio con revestimiento de madera" loading="lazy" width="836" height="799"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/recibidor-varillado.webp" alt="Panel de varillas de madera con luz" loading="lazy" width="796" height="610"><figcaption class="cap">Arq. Lala Loviseck</figcaption></figure>
+          <figure><img src="img/n01.webp" alt="Mueble de TV y escritorio en madera" loading="lazy" width="843" height="709"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/cocina-comedor.webp" alt="Cocina integrada al comedor" loading="lazy" width="834" height="829"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/n02.webp" alt="Cocina con vitrina iluminada" loading="lazy" width="679" height="817"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/comedor.webp" alt="Comedor con nichos iluminados" loading="lazy" width="632" height="797"><figcaption class="cap">Arq. Lala Loviseck</figcaption></figure>
+          <figure><img src="img/living-tv.webp" alt="Mueble de TV negro y panelería" loading="lazy" width="826" height="823"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/n09.webp" alt="Biblioteca blanca con nichos" loading="lazy" width="836" height="806"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/cocina-desayunador.webp" alt="Cocina con desayunador" loading="lazy" width="668" height="811"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/n12.webp" alt="Cocina con península frente a ventanal" loading="lazy" width="803" height="534"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/n07.webp" alt="Mueble de TV suspendido en dormitorio" loading="lazy" width="833" height="804"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/cocina-l.webp" alt="Cocina en L con frentes de madera" loading="lazy" width="625" height="769"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/n04.webp" alt="Cocina lineal blanca" loading="lazy" width="595" height="818"><figcaption class="cap">Arq. Lala Loviseck</figcaption></figure>
+          <figure><img src="img/n08.webp" alt="Camas con respaldo tapizado y revestimiento" loading="lazy" width="835" height="730"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/n14.webp" alt="Biblioteca de piso a techo" loading="lazy" width="661" height="799"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/n11.webp" alt="Dormitorio con respaldo y escritorio" loading="lazy" width="832" height="769"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/n03.webp" alt="Escritorio y mueble de TV" loading="lazy" width="620" height="794"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/living-escritorio.webp" alt="Mueble de TV y escritorio blanco con madera" loading="lazy" width="798" height="534"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/n06.webp" alt="Placard blanco a techo" loading="lazy" width="620" height="764"><figcaption class="cap">Arq. Lala Loviseck</figcaption></figure>
+          <figure><img src="img/n16.webp" alt="Mueble de TV gris" loading="lazy" width="675" height="740"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/n10.webp" alt="Living con panelería" loading="lazy" width="787" height="840"><figcaption class="cap">Arq. Florencia Sus · Metro</figcaption></figure>
+          <figure><img src="img/n13.webp" alt="Mueble ranurado gris con patas de bronce" loading="lazy" width="622" height="810"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/curvo.webp" alt="Volumen curvo enchapado en madera" loading="lazy" width="479" height="807"><figcaption class="cap">Volumen curvo enchapado</figcaption></figure>
+          <figure><img src="img/n15.webp" alt="Consola de madera" loading="lazy" width="575" height="775"><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+          <figure><img src="img/local-comercial.webp" alt="Mostrador para local comercial" loading="lazy" width="1400" height="788"><figcaption class="cap">Colombraro · Local comercial, Recoleta</figcaption></figure>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FÁBRICA -->
+  <div class="view" data-view="fabrica" hidden>
+    <section class="band plant">
+      <div class="wrap">
+        <div class="plant-top">
+          <div><p class="eyebrow">Capacidad industrial</p><h2>Tecnología italiana, <em>acá adentro</em>.</h2></div>
+          <p class="lead">Parque Biesse completo en Loma Hermosa. El plano entra, la pieza sale igual.</p>
+        </div>
+        <div class="plant-points">
+          <div><h3>Producción local</h3><p>Estándar industrial sin espera de importación. Semanas, no meses de flete y aduana.</p></div>
+          <div><h3>A la medida del proyecto</h3><p>Sin catálogo cerrado: se fabrica exactamente lo que el plano pide.</p></div>
+          <div><h3>Respaldo en obra</h3><p>Ajustes y posventa directo con quien lo fabricó.</p></div>
+        </div>
+        <div class="flow">
+          <div class="mach"><div class="ph"><img src="img/selco.webp" alt="Seccionadora Biesse Selco SK4" loading="lazy" width="1000" height="750"></div><span>Corte</span><b>Selco SK4</b><p>Seccionadora con optimización de placa.</p></div>
+          <div class="mach"><div class="ph"><img src="img/jade.webp" alt="Enchapadora Biesse Jade 240" loading="lazy" width="1000" height="750"></div><span>Cantos</span><b>Jade 240</b><p>Canto continuo pegado en línea.</p></div>
+          <div class="mach"><div class="ph"><img src="img/eko.webp" alt="Centro CNC vertical Biesse" loading="lazy" width="1000" height="750"></div><span>Perforado</span><b>Eko 2.1</b><p>Centro CNC vertical para perforado y ranurado.</p></div>
+          <div class="mach"><div class="ph"><img src="img/rover.webp" alt="Centro CNC Biesse Rover A" loading="lazy" width="1000" height="750"></div><span>Mecanizado</span><b>Rover A</b><p>Centro CNC: calado, fresado y perforado.</p></div>
+          <div class="mach"><div class="ph"><img src="img/viet.webp" alt="Lijadora calibradora Biesse" loading="lazy" width="1000" height="750"></div><span>Lijado</span><b>Viet S2</b><p>Calibrado y lijado antes de la pintura.</p></div>
+        </div>
+        <p class="swipe-hint">Deslizá para ver las cinco máquinas →</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <div class="head">
+          <div><p class="eyebrow">Terminación</p><h2>El detalle es <em>el producto</em>.</h2></div>
+          <p>Cada etapa de la terminación se hace dentro de la planta.</p>
+        </div>
+        <div class="lacquer">
+          <div class="ph"><img src="img/laqueado.webp" alt="Aplicación de laca con soplete sobre piezas blancas" loading="lazy" width="600" height="484"></div>
+          <div class="txt">
+            <h3>Lustre y laqueado en cabina propia</h3>
+            <p>Calibramos y lijamos cada pieza, aplicamos fondo poliuretánico y laca a soplete, y lijamos entre manos. No tercerizamos la terminación: es la parte del mueble que más se ve.</p>
+          </div>
+        </div>
+        <div class="trio">
+          <article><div class="ph"><img src="img/bookmatch.webp" alt="Panel enchapado en nogal con veta espejada" loading="lazy" width="789" height="1400"></div><h3>Enchapado book-match</h3><p>Veta continua y espejada en paneles de pared.</p></article>
+          <article><div class="ph"><img src="img/vitrina-led.webp" alt="Vitrina con perfiles LED embutidos" loading="lazy" width="556" height="816"></div><h3>Iluminación integrada</h3><p>Perfiles LED embutidos en el mueble, sin agregados a la vista.</p><small class="cap">Arq. María Gándara</small></article>
+          <article><div class="ph"><img src="img/curvo.webp" alt="Volumen curvo enchapado en madera" loading="lazy" width="479" height="807"></div><h3>Radios y curvas</h3><p>Volúmenes curvos enchapados en madera, resueltos en fábrica.</p></article>
+        </div>
+        <div class="brands-title"><p class="eyebrow" style="margin:0">Marcas con las que trabajamos</p><p>Herrajes, placas y perfiles de primera línea en cada proyecto.</p></div>
+        <div class="logos" aria-label="Marcas con las que trabajamos">
+          <div><img src="img/logo-blum.png" alt="Blum" width="429" height="120" loading="lazy"></div>
+          <div><img src="img/logo-hafele.png" alt="Häfele" width="762" height="120" loading="lazy"></div>
+          <div><img src="img/logo-carpi.png" alt="Carpi" width="632" height="120" loading="lazy"></div>
+          <div><img src="img/logo-egger.png" alt="Egger" width="512" height="120" loading="lazy"></div>
+          <div><img src="img/logo-faplac.png" alt="Faplac" width="543" height="120" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROCESO -->
+  <div class="view" data-view="proceso" hidden>
+    <section class="band">
+      <div class="wrap steps">
+        <div class="steps-side">
+          <p class="eyebrow">Cómo trabajamos</p>
+          <h2>Empezás con un plano. <em>Te lo entregamos instalado.</em></h2>
+          <figure><div class="ph"><img src="img/cocina-l.webp" alt="Cocina en L con frentes de madera" loading="lazy" width="625" height="769"></div><figcaption class="cap">Arq. María Gándara</figcaption></figure>
+        </div>
+        <ol>
+          <li><strong>Nos pasás el proyecto</strong><span>Plano, render o brief por WhatsApp o email.</span></li>
+          <li><strong>Cotización cerrada</strong><span>Materiales, plazo de entrega y condiciones por escrito, antes de empezar.</span></li>
+          <li><strong>Relevamiento</strong><span>Aceptada la cotización, medimos en obra y verificamos cada cota.</span></li>
+          <li><strong>Documentación técnica</strong><span>Despiece, herrajes y encuentros resueltos antes del corte.</span></li>
+          <li><strong>Fabricación</strong><span>Corte, CNC, cantos, lustre y armado, todo en nuestra planta.</span></li>
+          <li><strong>Instalación</strong><span>Logística e instalación en obra con equipo propio. Una sola contraparte.</span></li>
+        </ol>
+      </div>
+    </section>
+    <section class="contact" id="contacto">
+    <div class="wrap">
+      <div class="contact-left">
+        <p class="eyebrow">Contacto</p>
+        <h2>Hablemos de tu <em>próximo proyecto</em>.</h2>
+        <p class="lead">Mandanos el plano o el render y te respondemos con una cotización cerrada.</p>
+        <div class="actions"><a class="btn" href="https://wa.me/5491164580474" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Proyectos</a><a class="btn" href="https://wa.me/5491160455660" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Cotizaciones</a></div>
+      </div>
+      <div>
+        <div class="row"><small>Proyectos</small><div><a href="https://wa.me/5491164580474" target="_blank" rel="noopener">+54 9 11 6458-0474</a><p class="row-note">Luciano Silva · Producción y consultas técnicas</p></div></div>
+        <div class="row"><small>Cotizaciones</small><div><a href="https://wa.me/5491160455660" target="_blank" rel="noopener">+54 9 11 6045-5660</a><p class="row-note">Presupuestos y administración</p></div></div>
+        <div class="row"><small>Email</small><div><a href="mailto:cotizaciones@silmad.com">cotizaciones@silmad.com</a></div></div>
+        <div class="row"><small>Fábrica</small><div><p>Antonio Beruti 1262, Loma Hermosa<br>Tres de Febrero, Buenos Aires</p></div></div>
+      </div>
+    </div>
+  </section>
+  </div>
+</main>
+
+<!-- CONTACTO: al pie de todas las pestañas -->
+<footer class="contact-wrap">
+  
+  <div class="legal contact">
+    <div class="wrap"><b>SILMAD</b><span>Fábrica de muebles a medida · Desde 1978</span></div>
+  </div>
+</footer>
+
+
+
+<div class="dock" role="complementary" aria-label="Contacto">
+  <div class="wrap">
+    <div class="dock-txt"><b>¿Tenés un proyecto?</b><span>Mandanos el plano y te cotizamos.</span></div>
+    <div class="dock-act">
+      <a class="wa" href="https://wa.me/5491164580474" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Proyectos</a>
+      <a class="wa" href="https://wa.me/5491160455660" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Cotizaciones</a>
+      <a class="dock-mail" href="mailto:cotizaciones@silmad.com"><span class="mail-long">cotizaciones@silmad.com</span><span class="mail-short">Email</span></a>
+      <a href="#contacto" class="dock-more">Contacto</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var views=["inicio","obras","fabrica","proceso"];
+  var current="inicio";
+  function show(name,scroll){
+    current=name;
+    document.querySelectorAll(".view").forEach(function(v){v.hidden=v.dataset.view!==name;});
+    document.querySelectorAll(".tabs a").forEach(function(a){
+      if(a.getAttribute("href")==="#"+name){a.setAttribute("aria-current","page");}else{a.removeAttribute("aria-current");}
+    });
+    if(scroll){window.scrollTo(0,0);}
+  }
+  function route(){
+    var h=(location.hash||"").replace("#","");
+    if(h==="contacto"){
+      if(current!=="proceso"){show("proceso",false);}
+      var el=document.getElementById("contacto");
+      if(el){requestAnimationFrame(function(){el.scrollIntoView();});}
+      return;
+    }
+    show(views.indexOf(h)>=0?h:"inicio",true);
+  }
+  window.addEventListener("hashchange",route);
+  document.addEventListener("click",function(e){
+    var a=e.target.closest('a[href="#contacto"]');
+    if(a&&location.hash==="#contacto"){e.preventDefault();route();}
+  });
+  route();
+})();
+</script>
+
+</body>
+</html>
